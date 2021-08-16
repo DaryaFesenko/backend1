@@ -24,7 +24,7 @@ linters:
     - deadcode
     - errcheck
     - unused
-    - gosimple
+    #- gosimple
     - structcheck
     - varcheck
     - ineffassign
