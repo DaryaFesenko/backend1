@@ -14,7 +14,9 @@ import (
 )
 
 func main() {
-	ctx, _ := signal.NotifyContext(context.Background(), syscall.SIGINT)
+	ctx, cancel := context.WithCancel(context.Background())
+
+	go watchSignal(cancel)
 
 	cfg := net.ListenConfig{
 		KeepAlive: time.Minute,
@@ -46,6 +48,16 @@ func main() {
 			return
 		}
 	}
+}
+
+func watchSignal(cancel context.CancelFunc) {
+	osSignalChan := make(chan os.Signal, 1)
+	signal.Notify(osSignalChan, syscall.SIGINT)
+
+	<-osSignalChan
+
+	log.Println("user interrupted")
+	cancel()
 }
 
 func handleConn(ctx context.Context, conn net.Conn, wg *sync.WaitGroup) {
