@@ -1,0 +1,44 @@
+linters-settings:
+  gocyclo:
+    min-complexity: 20
+  dupl:
+    threshold: 100
+  goconst:
+    min-len: 2
+    min-occurrences: 2
+  misspell:
+    locale: US
+  lll:
+    line-length: 140
+
+linters:
+  disable-all: true
+  enable:
+    - gocyclo
+    - dupl
+    - lll
+    - goconst
+    - depguard
+    - misspell
+    - goimports
+    - deadcode
+    - errcheck
+    - unused
+    - gosimple
+    - structcheck
+    - varcheck
+    - ineffassign
+    - typecheck
+    - bodyclose
+    - unconvert
+    - unparam
+    - prealloc
+    - whitespace
+    - exportloopref
+    - revive
+    - gomnd
+
+run:
+  concurrency: 2
+  timeout: 2m
+  tests: false
