@@ -22,7 +22,7 @@ linters:
     - misspell
     - goimports
     - deadcode
-    - errcheck
+    #- errcheck
     - unused
     - gosimple
     - structcheck
@@ -35,7 +35,7 @@ linters:
     - prealloc
     - whitespace
     - exportloopref
-    - revive
+    #- revive
     - gomnd
 
 run:
